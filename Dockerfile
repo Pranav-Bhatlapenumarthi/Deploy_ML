@@ -1,12 +1,12 @@
 FROM python:3.10
 
-RUN mkdir /app
 WORKDIR /app
-COPY app/requirements.txt /app/
-RUN pip install -r requirements.txt
+COPY app/requirements.txt .
 
-COPY . .
-COPY models /app/models
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY app/ ./app/
+COPY models/ ./models/
 
 EXPOSE 8000
-CMD [ "python", "app/main.py" ]
+CMD ["python", "app/main.py"]
