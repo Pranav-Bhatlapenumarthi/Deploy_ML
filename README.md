@@ -2,7 +2,9 @@
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![Render](https://img.shields.io/badge/Deployed%20on-Render-brightgreen)
 
-A web-based Machine Learning API built with Flask that serves real-time predictions from a trained model. The API is containerized with Docker and deployed on [Render](https://render.com), making it accessible for integration with frontend applications or other services.
+A web-based Machine Learning API built with Flask that serves real-time predictions from a trained model. The API is containerised with Docker and deployed on [Render](https://render.com), making it accessible for integration with frontend applications or other services.
+
+For a step-by-step description of the application, check out this hands-on demonstration: https://medium.com/@hello.gradientthoughts/building-and-hosting-a-machine-learning-model-with-flask-and-docker-1cd4f89cf256
 
 ---
 
