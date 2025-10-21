@@ -1,6 +1,5 @@
 import joblib
 import pandas as pd
-import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -8,29 +7,15 @@ from sklearn.metrics import accuracy_score
 data = pd.read_csv('../f1_dnf.csv')
 print(data.head())
 
-print(data.columns)
+print(data.columns) # to view all the features
 
-print(data.count())
-print(data['target_finish'].value_counts()[0])
+print(data.count()) # to view number of data points in each feature
+
+ # To count how many cars do not finish the race 
+print("\n\nNumber of cars which didn't finish the race:", data['target_finish'].value_counts()[0])
 
 null_columns = data.isnull().any()
-print(null_columns)
-print(null_columns.value_counts())
-
-# Convert date columns: 'dob' (date of birth) and 'date' (race date) into datetime objects
-data['dob'] = pd.to_datetime(data['dob'], errors='coerce')
-data['date'] = pd.to_datetime(data['date'], errors='coerce')
-
-# Convert other string representations into numeric or timedelta where appropriate
-data['milliseconds'] = pd.to_numeric(data['milliseconds'], errors='coerce')
-data['fastestLap'] = pd.to_numeric(data['fastestLap'], errors='coerce')
-data['fastestLapSpeed'] = pd.to_numeric(data['fastestLapSpeed'], errors='coerce')
-
-# Convert fastestLapTime to a timedelta; note that incorrect formats will be set as NaT
-data['fastestLapTime'] = pd.to_timedelta(data['fastestLapTime'], errors='coerce')
-
-# Display information about the dataframe to verify changes
-# data.info()
+print(null_columns) # to check the features with null values
 
 # Predictive Modelling
 features = ["grid", "positionOrder", "points", "laps"]

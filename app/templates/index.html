@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>F1 DNF Prediction</h2>
+    <form action="/predict" method="post">
+      <input type="text" name="f1" placeholder="Grid (Integer Value)">
+      <input type="text" name="f2" placeholder="Position Order (Integer Value)">
+      <input type="text" name="f3" placeholder="Points (Float Value)">
+      <input type="text" name="f4" placeholder="Laps (Float Value)">
+      <input type="submit" value="Predict">
+    </form>
+
+    
+    <p>Below should show prediction after Flask passes it:</p>
+    <h3>{{ prediction_text }}</h3>
+  </body>
+</html>

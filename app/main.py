@@ -1,11 +1,11 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from model import model
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return jsonify({"message": "Flask ML API is runninng"})
+    return render_template('index.html')
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
@@ -19,21 +19,21 @@ def predict():
         })
         
     elif request.method == 'POST':
-        
-        data = request.get_json()
-        if not data or "features" not in data:
-            return jsonify({"error": "Missing 'features' key"}), 400
-        
-        features = data["features"]
-        try:
-            prediction, probability = model.predict(features)
-            return jsonify({
-                "prediction": prediction,
-                "probability": probability
-            })
-        except Exception as e:
-            return jsonify({"error": str(e)}), 500
+            if request.is_json:  # Handles json requests
+                data = request.get_json()
+                features = data.get("features", [])
+            else:  # Handles browser form submissions
+                features = [float(v) for v in request.form.values()]
 
+            try:
+                prediction, probability = model.predict(features)
+                # If request was from form, show in browser
+                if not request.is_json:
+                    return render_template('index.html', prediction_text=f'Prediction: {prediction}, Confidence: {probability:.2f}')
+                # If request was API, return JSON
+                return jsonify({"prediction": prediction, "probability": probability})
+            except Exception as e:
+                return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8000)

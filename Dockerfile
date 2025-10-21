@@ -7,6 +7,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app/ ./app/
 COPY models/ ./models/
+COPY app/templates /app/templates
 
 EXPOSE 8000
 CMD ["python", "app/main.py"]
