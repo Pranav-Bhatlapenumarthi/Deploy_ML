@@ -46,16 +46,11 @@ Deploy_ML/
 git clone https://github.com/Pranav-Bhatlapenumarthi/Deploy_ML.git
 cd Deploy_ML
 ```
-### 2. Create a virtual environment:
-```
-python -m venv venv
-venv\Scripts\activate
-```
-### 3. Install dependencies:
+### 2. Install dependencies:
 ```
 pip install -r requirements.txt
 ```
-### 4. Run the app:
+### 3. Run the app:
 ```
 python app/main.py
 ```
@@ -68,35 +63,4 @@ python app/main.py
 ### 2. Run the Docker container:
 ``` docker run -p 8000:8000 ml-flask ```
 
----
-
-
-## Endpoints
-
-### 1. Home (GET /)
-
-**Response:**
-```json
-{
-  "message": "Flask ML API is running"
-}
-
-```
-
-### 2. Predict (POST /predict)
-
-**Request:**
-```json
-{
-  "features": [5.1, 3.5, 1.4, 0.2]
-}
-```
-
-**Response:**
-```json
-{
-  "prediction": 0,
-  "probability": 0.7
-}
-```
 ---
